@@ -6,38 +6,34 @@ Write your code in this editor and press "Run" button to compile and execute it.
 
 *******************************************************************************/
 
-#include <stdio.h>
-
-int bit_operations(int num, int oper_type) {
-  
-  int result;
-  
-  switch (oper_type) 
-  {
-    case 1: result = num | (1 << 0);
-            break;
-    case 2: result = num & ~(1 << 31);
-            break;
-    case 3: result = num ^ (1 << 16);
-            break;
-    default:result = -1;
-            break;
-  }
-  return result;
+#include<stdio.h>
+#include<limits.h>
+int main(){
+    int max=INT_MIN;
+    int min=INT_MAX;
+    int rem, n;
+    printf("Enter a number : ");
+    scanf("%d",&n);
+    if(n>=0 && n<=9)
+    {
+        printf("Invalid\n");
+    }
+    else
+    {
+        while(n > 0) 
+        {
+            rem = n % 10;
+            if(rem < min) 
+            {
+                min = rem;
+            }
+            if(rem > max) 
+            {
+                max = rem;
+            }
+            n /= 10;
+        }
+        printf("%d and %d", min, max);
+    }
+    return 0;
 }
-int main() {
-  
-  int num,oper_type,result;
-  printf("\n Enter the number:");
-  scanf("%d",&num);
-  printf("\n Enter operatations type:");
-  scanf("%d",&oper_type);
-  result = bit_operations(num, oper_type);
-
- 
-  printf("The result is %d\n", result);
-
-  return 0;
-}
-
-

@@ -7,30 +7,28 @@ Write your code in this editor and press "Run" button to compile and execute it.
 *******************************************************************************/
 
 #include <stdio.h>
-
-int main()
+#include <stdlib.h>
+ 
+char* toBinary(int n, int len)
 {
-    int a;
-    scanf("%d",&a);
-    if(a<=100 && a>=90)
-    {
-        printf("Grade A");
+    char* binary = (char*)malloc(sizeof(char) * len);
+    int k = 0;
+    for (unsigned i = (1 << len - 1); i > 0; i = i / 2) {
+        binary[k++] = (n & i) ? '1' : '0';
     }
-    else if(a<=89 && a>=75)
-    {
-        printf("Grade B");
-    }
-    else if(a<=74 && a>=60)
-    {
-        printf("Grade C");
-    }
-    else if(a<=59 && a>=50)
-    {
-        printf("Grade D");
-    }
-    else
-    {
-        printf("Grade F");
-    }
+    binary[k] = '\0';
+    return binary;
+}
+ 
+int main(void)
+{
+    int n;
+    int len = 32;
+    scanf("%d",&n);
+ 
+    char* binary = toBinary(n, len);
+    printf("The binary representation of %d is %s", n, binary);
+    free(binary);
+ 
     return 0;
 }
